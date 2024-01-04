@@ -46,7 +46,7 @@ let handleDeleteProject = async (req, res) => {
             errMessage: 'khong co id truyen vao'
         })
     }
-    let message = await projectService.deleteProject(req.body)
+    let message = await projectService.deleteProject(req.body.id)
     console.log(message);
     return res.status(200).json(message);
 }

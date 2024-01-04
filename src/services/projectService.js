@@ -71,30 +71,32 @@ let getDetailProjectById = (inputId) => {
                     where: {
                         id: inputId
                     },
-                    attributes: ['name', 'descriptionHTML', 'descriptionMarkdown'],
+                    // attributes: ['name', 'descriptionHTML', 'descriptionMarkdown'],
+                    attributes: {},
+                    raw: false,
+                    nest: true
                 })
-
-                if (data) {
-                    let userProject = [];
-                    userProject = await db.User_Infor.findAll({
-                        where: { projectId: inputId},
-                        attributes: ['userId'],
-                    })
-                    data.userProject = userProject;
-                } else data = {}
-
+                if (data && data.image) {
+                    data.image = new Buffer(data.image, 'base64').toString('binary')
+                }
+                if (!data) data = {}
                 resolve({
-                    errMessage: 'ok',
                     errCode: 0,
-                    data
+                    data: data
                 })
+                // if (data) {
+                //     let userProject = [];
+                //     userProject = await db.User_Infor.findAll({
+                //         where: { projectId: inputId},
+                //         attributes: ['userId'],
+                //     })
+                //     data.userProject = userProject;
+                // } else data = {}
             }
 
         } catch (e) {
             reject(e)
         }
-
-
     })
 }
 //ham check name project ton tai
