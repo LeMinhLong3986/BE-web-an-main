@@ -174,8 +174,8 @@ let updateProjectData = (data) => {
             if (project) {
                 project.name = data.name;
                 project.image = data.imageBase64,
-                    project.descriptionHTML = data.descriptionHTML,
-                    project.descriptionMarkdown = data.descriptionMarkdown
+                project.descriptionHTML = data.descriptionHTML,
+                project.descriptionMarkdown = data.descriptionMarkdown
                 // project.description = data.description;
                 // project.status = data.status;
                 // project.startTime = data.startTime;
